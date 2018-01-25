@@ -1,12 +1,12 @@
 package com.diegocarloslima.fgelv.sample;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,6 +74,7 @@ public class SampleAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+		Log.i("INFO","getGroupView");
 		if(convertView == null) {
             convertView = mLayoutInflater.inflate(R.layout.sample_activity_list_group_item, parent, false);
 		}
@@ -122,6 +123,7 @@ public class SampleAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+		Log.i("INFO","getChildView");
 		if(convertView == null) {
 			convertView = mLayoutInflater.inflate(R.layout.sample_activity_list_child_item, parent, false);
 		}
@@ -129,13 +131,13 @@ public class SampleAdapter extends BaseExpandableListAdapter {
 		final TextView text = (TextView) convertView.findViewById(R.id.sample_activity_list_child_item_text);
 		text.setText(mChilds[groupPosition][childPosition]);
 
-		final LinearLayout llChildren = (LinearLayout) convertView.findViewById(R.id.ll_children);
-		llChildren.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(mContext,"点击子条目"+childPosition,Toast.LENGTH_LONG).show();;
-			}
-		});
+//		final LinearLayout llChildren = (LinearLayout) convertView.findViewById(R.id.ll_children);
+//		llChildren.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				Toast.makeText(mContext,"点击子条目"+childPosition,Toast.LENGTH_LONG).show();
+//			}
+//		});
 
 		return convertView;
 	}
@@ -147,7 +149,7 @@ public class SampleAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
-		return false;
+		return true;
 	}
 
 }

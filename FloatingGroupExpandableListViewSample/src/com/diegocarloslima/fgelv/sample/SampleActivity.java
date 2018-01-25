@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.diegocarloslima.fgelv.lib.FloatingGroupExpandableListView;
 import com.diegocarloslima.fgelv.lib.WrapperExpandableListAdapter;
@@ -54,6 +55,17 @@ public class SampleActivity extends Activity {
 		for(int i = 0; i < wrapperAdapter.getGroupCount(); i++) {
 			list.expandGroup(i);
 		}
+
+		list.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+			@Override
+			public boolean onChildClick(ExpandableListView parent, View v,
+										int groupPosition, int childPosition, long id) {
+				Toast.makeText(SampleActivity.this,"点击子条目"+groupPosition+childPosition,Toast.LENGTH_LONG).show();
+				return true;
+			}
+		});
+
 
 		list.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
 			@Override
